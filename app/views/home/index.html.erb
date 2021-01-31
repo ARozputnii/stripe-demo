@@ -1,7 +1,16 @@
-<h1>Home#index</h1>
-
-<% if current_user.nil? %>
-  <%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %>
-<% else %>
-  <%= link_to destroy_user_session_path, method: :delete do %>Log out<% end %>
-<% end %>
+<div class="text-right p-1">
+  <% if current_user.nil? %>
+    <%= link_to "Sign in", new_user_session_path, class: 'btn btn-outline-light'%>
+  <% else %>
+    <%= link_to "Log out", destroy_user_session_path, class: 'btn btn-outline-light' , method: :delete  %>
+  <% end %>
+</div>
+<div class="text-center">
+  <a href="#">
+    <div class="circle">
+      <div class="inner">
+        <h1>come on, rabbit !!! Donate me.</h1>
+      </div>
+    </div>
+  </a>
+</div>
