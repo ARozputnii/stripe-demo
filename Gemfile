@@ -42,3 +42,4 @@ group :development do
   gem "annotate"
   gem "bullet"
 end
+gem 'devise'
