@@ -8,8 +8,7 @@
   color: #ffffff;
 }
 
-.circle,
-.inner {
+.circle, .inner {
   border-radius: 50%;
   height: 540px;
   width: 600px;
@@ -23,13 +22,12 @@
   display: inline-block;
   margin: 20px auto;
 }
-
 .inner {
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: inset -3px 3px 6px rgba(0, 0, 0, .3);
-  background: #000; /* Фон кнопки */
+  background: #000;
   color: #fff;
   text-decoration: none;
   font-size: 24px;
@@ -40,6 +38,6 @@
   transition: all .5s ease-in-out;
 }
 a:hover .inner {
-  background: #ff0101;  /* Фон кнопки при наведении */
+  background: #ff0101;
   color: #fff;
 }
