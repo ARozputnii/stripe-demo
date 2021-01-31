@@ -1,0 +1,24 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: stripe-demo_development
+
+test:
+  <<: *default
+  database: stripe-demo_test
+
+production:
+  <<: *default
+  database: stripe-demo-shop_production
+  username: <%= Rails.application.credentials.db_user %>
+  password: <%= Rails.application.credentials.db_password %>
+
+staging:
+  <<: *default
+  database: stripe-demo_staging
+  username: deployer
+  password: <%=  Rails.application.credentials.database_password %>
