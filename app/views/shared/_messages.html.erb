@@ -1,0 +1,20 @@
+<div class="col-3" id="messages">
+  <% if !notice.nil?  %>
+    <p class="alert alert-success text-center">
+      <%= notice %>
+    </p>
+  <% elsif !alert.nil? %>
+    <p class="alert alert-danger text-center" role="alert">
+      <%= alert %>
+    </p>
+  <% end %>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    $("#messages").on("click", function(){
+      $("#messages").hide(500);
+    })
+    setInterval(function() {
+        $("#messages").hide(500);
+    }, 2000);
+</script>

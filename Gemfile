@@ -42,4 +42,6 @@ group :development do
   gem "annotate"
   gem "bullet"
 end
-gem 'devise'
+gem "devise"
+gem "stripe"
+gem "stripe_event"
