@@ -1,7 +1,10 @@
 class CreditCardService
-  def initialize(user_id, card)
-    @user = User.find(user_id)
-    @card = card
+  def initialize(user, params)
+    @user = user
+    @card_number = params[:card_number]
+    @month = params[:month]
+    @year = params[:year]
+    @cvc = params[:cvc]
   end
 
   def create_credit_card
@@ -17,10 +20,10 @@ class CreditCardService
   def generate_token
     Stripe::Token.create(
       card: {
-        number: @card[:number],
-        exp_month: @card[:month],
-        exp_year: @card[:year],
-        cvc: @card[:cvc]
+        number: @card_number,
+        exp_month: @month,
+        exp_year: @year,
+        cvc: @cvc
       }
     ).id
   end

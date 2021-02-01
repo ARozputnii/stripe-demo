@@ -28,8 +28,7 @@ class User < ApplicationRecord
   validates_format_of :email, with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
   validates_uniqueness_of :email
 
-  private
-  def assign_customer_id
-    self.customer_id = Stripe::Customer.create(email: email).id
+  def add_customer_id
+    update(customer_id: Stripe::Customer.create(email: email).id); self
   end
 end

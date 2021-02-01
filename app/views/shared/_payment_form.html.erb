@@ -1,48 +1,58 @@
-<%= form_tag '/#' do %>
+<%= form_with model: CreditCard, url: payment_path, method: :post, local: true do |f| %>
   <div class="mt-5 pt-5">
+    <%# if errors.any? %>
+<!--      <div id="error_explanation">-->
+<!--        <ul>-->
+          <%# errors.full_messages.each do |msg| %>
+<!--            <li><%#= msg %></li>-->
+          <%# end %>
+<!--        </ul>-->
+<!--      </div>-->
+    <%# end %>
+
     <div class='pb-1 text-center'>
-      <%= label_tag :card_number , "Card number", class:"col-form-label"%>
+      <%= f.label :card_number, "Card number", class:"col-form-label"%>
     </div>
     <div class='pb-4 col-md-6 offset-md-3'>
-      <%= text_field_tag :card_number , nil, class:"form-control text-center", placeholder: 'Card number'  %>
+      <%= f.number_field :card_number, class:"form-control text-center", placeholder: 'Card number'  %>
     </div>
 
     <div class='pb-1 text-center'>
-      <%= label_tag :donate_amount , "Donate amount", class:"col-form-label"%>
+      <%= f.label :price, "Price", class:"col-form-label"%>
     </div>
     <div class='pb-4 col-md-6 offset-md-3'>
-      <%= number_field_tag :donate_amount , nil, class:"form-control text-center", placeholder: 'Enter donate amount'  %>
+      <%= f.number_field :price, class:"form-control text-center", placeholder: 'Enter donate amount'  %>
     </div>
 
     <div class="row col-md-6 offset-md-3">
       <div class="col-4">
         <div class='pb-1 text-center'>
-          <%= label_tag :month, "Month", class:"col-form-label" %>
+          <%= f.label :month, "Month", class:"col-form-label" %>
         </div>
         <div class='pb-4'>
-          <%= number_field_tag :month , nil, class:"form-control text-center", placeholder: 'Expired month' %>
+          <%= f.number_field :month, class:"form-control text-center", placeholder: 'Expired month' %>
         </div>
       </div>
       <div class="col-4">
         <div class='pb-1 text-center'>
-          <%= label_tag :year, "Year", class:"col-form-label" %>
+          <%= f.label :year, "Year", class:"col-form-label" %>
         </div>
         <div class='pb-4'>
-          <%= number_field_tag :year , nil, class:"form-control text-center", placeholder: 'Expired year' %>
+          <%= f.number_field :year, class:"form-control text-center", placeholder: 'Expired year' %>
         </div>
       </div>
       <div class="col-4">
         <div class='pb-1 text-center'>
-          <%= label_tag :cvc, "CVC", class:"col-form-label" %>
+          <%= f.label :cvc, "CVC", class:"col-form-label" %>
         </div>
         <div class='pb-4'>
-          <%= number_field_tag :cvc , nil, class:"form-control text-center", placeholder: 'CVC' %>
+          <%= f.number_field :cvc, class:"form-control text-center", placeholder: 'CVC' %>
         </div>
       </div>
     </div>
 
     <div class="actions text-center pt-3 mb-5">
-      <%= submit_tag 'Donate', class:"btn btn-outline-light mr-3" %>
+      <%= f.submit 'Donate', class:"btn btn-outline-light mr-3" %>
     </div>
   </div>
 <% end %>

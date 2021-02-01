@@ -6,7 +6,7 @@ class PaymentsController < ApplicationController
 
   private
   def card_params
-    params.require(:credit_card).permit(:card_number, :month, :year, :cvc, :card_id)
+    params.require(:credit_card).permit(:card_number, :month, :year, :cvc, :card_id, :price)
   end
 
   def get_flash(type, message)
