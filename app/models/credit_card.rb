@@ -20,6 +20,8 @@ class CreditCard < ApplicationRecord
 
   attr_accessor :card_number, :cvc, :card_id, :price, :month, :year
 
+  validates :card_number, presence: true
+
   private
   def set_last_card_number
     short_card_number.to_s.length <= 4 ? short_card_number : update(short_card_number: short_card_number.to_s.slice(-4..-1))

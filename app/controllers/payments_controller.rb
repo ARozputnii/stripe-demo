@@ -2,7 +2,7 @@ class PaymentsController < ApplicationController
   def create
     return @error = validator if validator != true
     payment = PaymentService.new(current_user, card_params).call
-    payment[:success].present? ? redirect_to show_path : @error = payment[:error]
+    payment[:success].present? ? (redirect_to show_path) : (@error = payment[:error])
   end
 
   private
