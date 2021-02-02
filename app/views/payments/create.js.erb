@@ -1,0 +1,9 @@
+$(".text-danger").hide(0);
+
+<% if @error.class == String %>
+$('.form-head').prepend('<p class="offset-md-3 text-left text-danger">- <%= @error %></p>');
+<% else %>
+  <% @error.each do |e| %>
+$('.form-head').prepend('<p class="offset-md-3 text-left text-danger">- <%= e %></p>');
+  <% end %>
+<% end %>

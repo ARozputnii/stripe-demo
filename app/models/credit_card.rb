@@ -16,9 +16,9 @@
 class CreditCard < ApplicationRecord
   before_save :set_last_card_number
 
-  belongs_to :user
+  belongs_to :user, optional: true
 
-  attr_accessor :card_number, :cvc, :card_id
+  attr_accessor :card_number, :cvc, :card_id, :price, :month, :year
 
   private
   def set_last_card_number

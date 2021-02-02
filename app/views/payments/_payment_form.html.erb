@@ -1,15 +1,6 @@
-<%= form_with model: CreditCard, url: payment_path, method: :post, local: true do |f| %>
-  <div class="mt-5 pt-5">
-    <%# if errors.any? %>
-<!--      <div id="error_explanation">-->
-<!--        <ul>-->
-          <%# errors.full_messages.each do |msg| %>
-<!--            <li><%#= msg %></li>-->
-          <%# end %>
-<!--        </ul>-->
-<!--      </div>-->
-    <%# end %>
+<%= form_with model: @credit_card, url: payment_path, method: :post do |f| %>
 
+  <div class="mt-5 pt-5 form-head">
     <div class='pb-1 text-center'>
       <%= f.label :card_number, "Card number", class:"col-form-label"%>
     </div>

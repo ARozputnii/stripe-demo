@@ -1,0 +1,8 @@
+<div class="text-right p-1">
+  <% if current_user.nil? %>
+    <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-outline-light mr-1'%>
+    <%= link_to "Sign in", new_user_session_path, class: 'btn btn-outline-light'%>
+  <% else %>
+    <%= link_to "Log out", destroy_user_session_path, class: 'btn btn-outline-light' , method: :delete  %>
+  <% end %>
+</div>

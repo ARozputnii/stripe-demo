@@ -1,0 +1,25 @@
+<%= form_with model: CreditCard, url: payment_path, method: :post do |f| %>
+
+  <div class="mt-5 pt-5 form-head">
+    <div class='pb-1 text-center'>
+      <%= f.label :card_id, "Choose your card ", class:"col-form-label"%>
+    </div>
+    <div class='pb-4 col-md-6 offset-md-3'>
+      <%= f.select(:card_id, @user.credit_cards.collect {|card| [card.short_card_number, card.id]},
+                   { prompt: "Select Credit card" }, class:'form-control') %>
+    </div>
+
+    <div class='pb-1 text-center'>
+      <%= f.label :price, "Price", class:"col-form-label"%>
+    </div>
+    <div class='pb-4 col-md-6 offset-md-3'>
+      <%= f.number_field :price, class:"form-control", placeholder: 'Enter donate amount'  %>
+    </div>
+
+    <div class="actions text-center pt-3 mb-5">
+      <%= f.submit 'Donate', class:"btn btn-outline-light mr-3" %>
+    </div>
+  </div>
+<% end %>
+
+
