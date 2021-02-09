@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   get "repeat_payment", to: "home#repeat_payment"
   post "payment", to: "payments#create"
   devise_for :users
-  mount StripeEvent::Engine, at: '/payments'
+  mount StripeEvent::Engine, at: "/payments"
 end

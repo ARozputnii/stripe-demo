@@ -8,7 +8,10 @@ class PaymentService
   def call
     if @stripe_card_id.class == String
       create_payment(@stripe_card_id)
-      @user.credit_cards.find_or_create_by(short_card_number: @params[:card_number], stripe_id: @stripe_card_id)
+      if CreditCard.find_by(short_card_number: @params[:card_number].slice(-4..-1)).nil?
+        credit_card = @user.credit_cards.new(short_card_number: @params[:card_number], stripe_id: @stripe_card_id)
+        credit_card.save(validate: false)
+      end
       { success: "This payment is complete." }
     else
       @stripe_card_id
@@ -30,7 +33,7 @@ class PaymentService
     Stripe::Charge.create(
       customer: @user.customer_id,
       source:   card_id,
-      amount:   @params[:price],
+      amount:   (@params[:price].to_f * 100).to_i,
       currency: "usd"
     )
   rescue Stripe::CardError => e; { errors: e.message }

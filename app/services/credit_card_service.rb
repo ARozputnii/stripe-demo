@@ -8,10 +8,8 @@ class CreditCardService
   end
 
   def create_credit_card
-    Stripe::Customer.create_source(
-      Stripe::Customer.retrieve(@user.customer_id).id,
-      { source: generate_token },
-      ).id
+    Stripe::Customer.create_source(Stripe::Customer.retrieve(@user.customer_id).id,
+                                   { source: generate_token }).id
   rescue Stripe::InvalidRequestError => e; hash_errors(e)
   rescue Stripe::CardError => e; hash_errors(e)
   end
