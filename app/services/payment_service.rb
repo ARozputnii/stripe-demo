@@ -6,15 +6,12 @@ class PaymentService
   end
 
   def call
-    if @stripe_card_id.class == String
-      create_payment(@stripe_card_id)
-      if CreditCard.find_by(short_card_number: @params[:card_number].slice(-4..-1)).nil?
-        credit_card = @user.credit_cards.new(short_card_number: @params[:card_number], stripe_id: @stripe_card_id)
-        credit_card.save(validate: false)
-      end
+    return @stripe_card_id if @stripe_card_id.class != String
+
+    create_payment(@stripe_card_id)
+    if @charge.present?
+      AfterPaymentLogic.new(@user, @params, @stripe_card_id).call
       { success: "This payment is complete." }
-    else
-      @stripe_card_id
     end
 
   rescue Stripe::InvalidRequestError => e; { error: e.message }
@@ -30,7 +27,7 @@ class PaymentService
   end
 
   def create_payment(card_id)
-    Stripe::Charge.create(
+    @charge = Stripe::Charge.create(
       customer: @user.customer_id,
       source:   card_id,
       amount:   (@params[:price].to_f * 100).to_i,
